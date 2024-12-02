@@ -1,2 +1,2 @@
 // 🐶 décommente pour avoir une instruction
-//alert("config ok");
+alert("config ok");
