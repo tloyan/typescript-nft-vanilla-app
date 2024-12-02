@@ -10,52 +10,41 @@ function cloneCard() {
 }
 
 // 🐶 change le type any par le bon type (un element du tableau 'nftsList')
-function createCard(data: any) {
-  // 🐶 Appelle la fonction 'cloneCard()' et affecte le clone dans une variable "card"
-  // ⛏️ décommente la fonction 'populateCard' : pense au cast
-  // populateCard(card, data);
+function createCard(data: nftType) {
+  const card = cloneCard()
+  populateCard(card as Element, data);
 }
 
 // 🐶 change le type any par le bon type (un element du tableau 'nftsList')
-function populateCard(currentCard: Element, data: any) {
-  //   📝 pour rappel : data à les propriété suivantes
-  //   title: string;
-  //   description: string;
-  //   creator: string;
-  //   img: string;
-  //   price: string;
-  //   expire: string;
-  //   avatar: string;
-  // 🐶 tu vas devoir recuperer chaque element de la Card et y mettre la bonne valeur
-  // 🐶 Commençons par l'image
-  // - récupere avec 'querySelector' et la classe ".main-image" l'element image
-  // - ensuite affecte lui la valeur de src
-  // exemple :
-  // 🤖 img.src = data.img;
-  //
-  // 🐶 mais attention : 'querySelector' retourne un 'Element' et un 'Element' ne connais pas 'src'
-  // pense à caster de la bonne manière
-  // 📝 https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.htmlimageelement.html
-  // 🐶 fais la même chose pour le titre
-  // - classe title
-  // - data.title
-  // exemple :
-  // 🤖 title.textContent = data.title;
-  // cast de la bonne manière
-  // 📝 https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.htmlheadelement.html
-  // 🐶 fais la même chose pour la description
-  // - classe description
-  // - data.description;
-  // 🐶 fais la même chose pour le prix
-  // - classe eth
-  // - data.price;
-  // 🐶 fais la même chose pour l'expiration
-  // 🐶 fais la même chose pour le createur
-  // 🐶 fais la même chose pour l'avatar
+function populateCard(currentCard: Element, data: nftType) {
+  const img = currentCard.querySelector(".main-image") as HTMLImageElement;
+  img.src = data.img;
+
+  const title = currentCard.querySelector(".title") as HTMLHeadElement;
+  title.textContent = data.title;
+
+  const description = currentCard.querySelector(
+    ".description"
+  ) as HTMLParagraphElement;
+  description.textContent = data.description;
+
+  const eth = currentCard.querySelector(".eth") as HTMLSpanElement;
+  eth.textContent = data.price;
+
+  const expire = currentCard.querySelector(".expire") as HTMLSpanElement;
+  expire.textContent = data.expire;
+
+  const creator = currentCard.querySelector(".creator-name") as HTMLSpanElement;
+  creator.textContent = data.creator;
+
+  const avatar = currentCard.querySelector(".avatar") as HTMLImageElement;
+  avatar.src = data.avatar;
 }
 
 export default function init() {
   console.log(nftsList);
+  nftsList.map(nftItem => createCard(nftItem))
+
   // 🐶 Appelle 'createCard' avec le premier element du tableau 'nftsList'
   // 🐶 Appelle 'createCard' avec le deuxieme element du tableau 'nftsList'
   // 🐶 constate l'affichage à l'écran
