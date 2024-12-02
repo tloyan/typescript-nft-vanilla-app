@@ -65,6 +65,14 @@ const nftsList: nftType[] = [
 // 🐶 créé une fonction "cloneCard"
 // - aucun parmètre d'entrée
 // - retourne l'objet cloner
+function cloneCard() {
+  const card = document.querySelector('.main-card')
+  const newCard = card?.cloneNode(true)
+
+  const container = document.querySelector('.card-container')
+  if (newCard) container?.appendChild(newCard)
+  return newCard
+}
 
 // Détail de la fonction :
 // - récupère le premier element ayant la class ".main-card" avec 'querySelector' (pense au cast)
@@ -75,5 +83,8 @@ const nftsList: nftType[] = [
 
 export default function init() {
   console.log(nftsList);
+  cloneCard()
+  cloneCard()
+  cloneCard()
   // 🐶 Appel ici plusieurs fois la fonction cloneCard() et verifie si les cards s'ajoutent à l'écran
 }
